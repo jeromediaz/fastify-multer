@@ -24,14 +24,14 @@ function fastifyMulter(
   _options: PluginOptions,
   next: (err?: Error) => void,
 ) {
-  fastify.addContentTypeParser('multipart', setMultipart)
+  fastify.addContentTypeParser(['multipart', 'multipart/form-data'], setMultipart)
   fastify.decorateRequest('isMultipart', isMultipart)
 
   next()
 }
 
 const multer = fp(fastifyMulter, {
-  fastify: '>= 3.0.0',
+  fastify: '>= 5.0.0',
   name: 'fastify-multer',
 })
 
